@@ -1,0 +1,260 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Placement Support | CSC – Computer Software College</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'main/css/Placement.css' %}">
+</head>
+<body>
+
+<div class="topbar">CSC – Computer Software College | [College Address] | +91 XXXXX XXXXX</div>
+
+<header>
+  <div class="nav">
+    <a href="/" class="logo">CSC</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Menu">&#9776;</button>
+    <nav>
+      <ul id="menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/courses/">Courses</a></li>
+        <li><a href="/workshop/">Workshop</a></li>
+        <li><a href="/achievements/">Achievements</a></li>
+        <li><a href="/careers/">Careers</a></li>
+        <li><a href="/placement/" class="active">Placement Support</a></li>
+        <li><a href="/contact/">Contact Us</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div>
+      <span class="tag">LEARN · PRACTICE · GROW</span>
+      <h1>Placement Support at CSC</h1>
+      <p>From your first class to your first job – we train, guide and connect you with companies so you step into the IT industry with confidence.</p>
+      <a href="#enquiry" class="btn">Get Placement Guidance →</a>
+    </div>
+    <div class="hero-art">
+        <img src="{% static 'main/images/python.webp' %}"</div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="container">
+    <div><b data-count="500">0</b><span>Students Placed</span></div>
+    <div><b data-count="50">0</b><span>Hiring Partners</span></div>
+    <div><b data-count="100">0</b><span>% Placement Assistance</span></div>
+    <div><b data-count="10">0</b><span>Mock Interviews per Student</span></div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>How We Support Your Career</h2>
+    <p class="sub">Everything you need to get job-ready, under one roof.</p>
+    <div class="grid">
+      <div class="card"><div class="ic">📄</div><h3>Resume Building</h3><p>ATS-friendly resume, LinkedIn and GitHub profile setup.</p></div>
+      <div class="card"><div class="ic">🎤</div><h3>Mock Interviews</h3><p>Technical and HR rounds with feedback from trainers.</p></div>
+      <div class="card"><div class="ic">🧠</div><h3>Aptitude Training</h3><p>Logical reasoning, quantitative and verbal practice.</p></div>
+      <div class="card"><div class="ic">💬</div><h3>Soft Skills</h3><p>Communication, group discussion and confidence building.</p></div>
+      <div class="card"><div class="ic">💻</div><h3>Coding Practice</h3><p>Python, SQL and problem-solving for interview rounds.</p></div>
+      <div class="card"><div class="ic">🛠️</div><h3>Real-Time Projects</h3><p>Portfolio-ready full stack projects to show employers.</p></div>
+      <div class="card"><div class="ic">🤝</div><h3>Job Referrals</h3><p>Direct referrals to our hiring partner companies.</p></div>
+      <div class="card"><div class="ic">🏢</div><h3>Campus Drives</h3><p>Placement drives and walk-in interview alerts.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="placement-process">
+  <div class="container">
+    <h2>Your Placement Journey</h2>
+    <p class="sub">Five simple steps from enrollment to offer letter.</p>
+    <div class="steps">
+      <div class="step"><h4>Learn</h4><p>Complete Python Full Stack training.</p></div>
+      <div class="step"><h4>Build</h4><p>Create projects and a strong portfolio.</p></div>
+      <div class="step"><h4>Prepare</h4><p>Aptitude, mock interviews, resume.</p></div>
+      <div class="step"><h4>Apply</h4><p>Referrals and interview scheduling.</p></div>
+      <div class="step"><h4>Get Hired</h4><p>Offer letter and career growth support.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="container">
+    <div>
+      <span class="badge">FEATURED</span>
+      <h2>Python Full Stack Development</h2>
+      <p>Placement-focused course covering Python, Django, HTML/CSS/JS, databases and deployment, with interview preparation built in.</p>
+      <a href="/courses/" class="link">View Course ›</a>
+    </div>
+    <div class="roles">
+      <span>Python Developer</span><span>Full Stack Developer</span><span>Web Developer</span>
+      <span>Backend Developer</span><span>Software Trainee</span><span>QA / Support Engineer</span>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Our Hiring Partners</h2>
+    <p class="sub">Companies where CSC students build their careers.</p>
+    <div class="partners">
+      <div>Company 1</div><div>Company 2</div><div>Company 3</div>
+      <div>Company 4</div><div>Company 5</div><div>Company 6</div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="container">
+    <h2>Student Success Stories</h2>
+    <p class="sub">Real students, real offers.</p>
+    <div class="stories">
+      <div class="story"><p>"The mock interviews and project work at CSC helped me crack my first interview."</p><b>Student Name</b><br><small>Python Developer, Company Name</small></div>
+      <div class="story"><p>"Trainers guided me on resume and coding practice until I got placed."</p><b>Student Name</b><br><small>Full Stack Developer, Company Name</small></div>
+      <div class="story"><p>"From a non-IT background to a software job – thanks to CSC placement support."</p><b>Student Name</b><br><small>Web Developer, Company Name</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Frequently Asked Questions</h2>
+    <p class="sub">Quick answers about our placement support.</p>
+    <div class="faq">
+      <div class="faq-item"><button class="faq-q">Do you provide placement guarantee? <span>+</span></button><div class="faq-a">We provide 100% placement assistance – training, interview preparation and job referrals. Selection depends on your performance in company interviews.</div></div>
+      <div class="faq-item"><button class="faq-q">Who can join for placement support? <span>+</span></button><div class="faq-a">Students and graduates enrolled in CSC courses, including freshers and career-gap candidates.</div></div>
+      <div class="faq-item"><button class="faq-q">Is there any extra fee for placement? <span>+</span></button><div class="faq-a">Placement support is included in the course. Contact us for the latest details.</div></div>
+      <div class="faq-item"><button class="faq-q">How long does placement training take? <span>+</span></button><div class="faq-a">It runs alongside the course and continues for a few weeks after completion until you are placed.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="enquiry">
+  <div class="container">
+    <h2>Not Sure Which Course to Choose?</h2>
+    <p class="sub">Leave your details and our team will call you back.</p>
+    <form id="enquiryForm">
+      {% csrf_token %}
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="tel" id="phone" placeholder="Phone Number" pattern="[0-9]{10}" required>
+      <input type="email" id="email" class="full" placeholder="Email Address">
+      <select id="course" class="full">
+        <option>Python Full Stack Development</option>
+        <option>Web Development</option>
+        <option>Java Programming</option>
+      </select>
+      <button type="submit" class="btn">Talk to Us →</button>
+    </form>
+    <p id="msg"></p>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="f-grid">
+      <div><a href="/" class="logo">CSC</a><p style="margin-top:10px">Computer Software College</p></div>
+      <div><h5>Quick Links</h5><ul><li><a href="/">Home</a></li><li><a href="/courses/">Courses</a></li><li><a href="/achievements/">Achievements</a></li><li><a href="/placement/">Placement Support</a></li></ul></div>
+      <div><h5>Contact</h5><ul><li>📍 [College Address]</li><li>📞 +91 XXXXX XXXXX</li><li>✉️ email@csc.com</li></ul></div>
+      <div><h5>Social</h5><ul><li><a href="#">Facebook</a></li><li><a href="#">Instagram</a></li><li><a href="#">YouTube</a></li><li><a href="#">WhatsApp</a></li></ul></div>
+    </div>
+    <p class="copy">© 2026 Computer Software College. All Rights Reserved.</p>
+  </div>
+</footer>
+
+<script>
+// ===== mobile menu =====
+document.getElementById('menuBtn').onclick=()=>document.getElementById('menu').classList.toggle('show');
+
+// ===== FAQ accordion =====
+document.querySelectorAll('.faq-q').forEach(b=>{
+  b.addEventListener('click',()=>{
+    const item=b.parentElement;
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen) item.classList.add('open');
+  });
+});
+
+// ===== animated counters =====
+function runCounter(el){
+  const end=+el.dataset.count;
+  let n=0;
+  const step=Math.max(1,Math.ceil(end/50));
+  const timer=setInterval(()=>{
+    n+=step;
+    if(n>=end){n=end;clearInterval(timer);}
+    el.textContent=n+'+';
+  },30);
+}
+const counterObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){runCounter(e.target);counterObs.unobserve(e.target);}
+  });
+},{threshold:.3});
+document.querySelectorAll('[data-count]').forEach(el=>counterObs.observe(el));
+
+// ===== scroll reveal =====
+document.querySelectorAll('.section h2,.section .sub,.faq-item,.cta h2,.cta .sub,#enquiryForm,.stats .container>div,.card,.step,.story,.partners div,.roles span')
+  .forEach(el=>{
+    el.classList.add('reveal');
+    const i=[...el.parentElement.children].indexOf(el);
+    el.style.transitionDelay=(i%4)*0.12+'s';
+  });
+const heroLeft=document.querySelector('.hero .container>div:first-child');
+const heroArt=document.querySelector('.hero-art');
+heroLeft.classList.add('reveal','from-left');
+heroArt.classList.add('reveal','zoom');
+const bandL=document.querySelector('.band .container>div:first-child');
+const bandR=document.querySelector('.band .container>div:last-child');
+bandL.classList.add('reveal','from-left');
+bandR.classList.add('reveal','from-right');
+
+const revealObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('show');revealObs.unobserve(e.target);}
+  });
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+
+// ===== progress bar, header shadow, back-to-top =====
+const progressBar=document.createElement('div');
+progressBar.id='progress';
+document.body.appendChild(progressBar);
+
+const toTopBtn=document.createElement('button');
+toTopBtn.id='toTop';
+toTopBtn.innerHTML='↑';
+document.body.appendChild(toTopBtn);
+toTopBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+window.addEventListener('scroll',()=>{
+  const h=document.documentElement;
+  const max=h.scrollHeight-h.clientHeight;
+  progressBar.style.width=(max>0?h.scrollTop/max*100:0)+'%';
+  toTopBtn.classList.toggle('on',h.scrollTop>400);
+  document.querySelector('header').classList.toggle('scrolled',h.scrollTop>10);
+});
+
+// ===== enquiry form =====
+document.getElementById('enquiryForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  const data={
+    name:document.getElementById('name').value,
+    phone:document.getElementById('phone').value,
+    email:document.getElementById('email').value,
+    course:document.getElementById('course').value
+  };
+  // Connect to Django later:
+  // const csrf=document.querySelector('[name=csrfmiddlewaretoken]').value;
+  // fetch('/api/enquiry/',{method:'POST',headers:{'Content-Type':'application/json','X-CSRFToken':csrf},body:JSON.stringify(data)});
+  document.getElementById('msg').textContent='Thank you, '+data.name+'! We will contact you soon.';
+  e.target.reset();
+});
+</script>

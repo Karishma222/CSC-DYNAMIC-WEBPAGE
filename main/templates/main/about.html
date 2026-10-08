@@ -1,0 +1,349 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'main/css/about.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- ===================== COURSE HERO ===================== -->
+<section class="course-hero">
+    <div class="course-hero-inner">
+        <div class="course-hero-content">
+            <div class="hero-kicker">LEARN • PRACTICE • GROW</div>
+            <h1>Explore Our Courses</h1>
+
+            <div class="course-search">
+                <input id="courseSearch" type="text" placeholder="Search courses..." autocomplete="off">
+                <button id="courseSearchBtn" type="button">⌕</button>
+            </div>
+        </div>
+
+        <div class="course-hero-image">
+            <img src="{% static 'main/images/sample.webp' %}" alt="Students learning">
+        </div>
+    </div>
+</section>
+
+<!-- ===================== COURSE LIST ===================== -->
+<section class="course-list-section">
+    <div class="course-list-container">
+
+        <div class="course-heading">
+            <h2>Find the Right Course for You</h2>
+        </div>
+
+        <!-- CATEGORY -->
+        <div class="category-filter">
+            <button class="filter-btn active" data-filter-group="category" data-value="all">All Courses</button>
+            <button class="filter-btn" data-filter-group="category" data-value="software">Software Development</button>
+            <button class="filter-btn" data-filter-group="category" data-value="web">Web Development</button>
+            <button class="filter-btn" data-filter-group="category" data-value="programming">Programming</button>
+            <button class="filter-btn" data-filter-group="category" data-value="uiux">UI / UX</button>
+            <button class="filter-btn" data-filter-group="category" data-value="digital">Digital Marketing</button>
+            <button class="filter-btn" data-filter-group="category" data-value="cloud">Cloud Computing</button>
+            <button class="filter-btn" data-filter-group="category" data-value="other">Other</button>
+        </div>
+
+        <!-- MODE + LEVEL -->
+        <div class="filter-bottom">
+            <div class="filter-block">
+                <div class="filter-title">Mode</div>
+                <div class="filter-row">
+                    <button class="filter-btn active" data-filter-group="mode" data-value="online">Online</button>
+                    <button class="filter-btn" data-filter-group="mode" data-value="offline">Offline</button>
+                    <button class="filter-btn" data-filter-group="mode" data-value="hybrid">Hybrid</button>
+                </div>
+            </div>
+
+            <div class="filter-block level-block">
+                <div class="filter-title">Level</div>
+                <div class="filter-row">
+                    <button class="filter-btn active" data-filter-group="level" data-value="beginner">Beginner</button>
+                    <button class="filter-btn" data-filter-group="level" data-value="intermediate">Intermediate</button>
+                    <button class="filter-btn" data-filter-group="level" data-value="advanced">Advanced</button>
+                </div>
+            </div>
+        </div>
+
+        {% if courses %}
+        <div class="course-grid" id="courseGrid">
+
+            {% for course in courses %}
+            <article class="course-card"
+                     data-name="{{ course.name|lower }}"
+                     data-description="{{ course.description|lower }}"
+                     data-category="{{ course.name|lower }}"
+                     data-mode="online"
+                     data-level="beginner">
+
+                <div class="course-card-image">
+                    {% if course.image %}
+                        <img src="{{ course.image.url }}" alt="{{ course.name }}">
+                    {% else %}
+                        <img src="{% static 'main/images/sample.webp' %}" alt="{{ course.name }}">
+                    {% endif %}
+                </div>
+
+                <div class="course-card-content">
+                    <div class="card-category">CATEGORY</div>
+
+                    <h3>{{ course.name }}</h3>
+
+                    <p class="card-description">
+                        {{ course.description|truncatewords:18 }}
+                    </p>
+
+                    <div class="card-meta">
+                        <span>Practical Training</span>
+                        <span class="meta-separator">|</span>
+                        <span>{{ course.duration }}</span>
+                    </div>
+
+                    <button type="button"
+                            class="view-course"
+                            onclick="openBooking('{{ course.id }}','{{ course.name|escapejs }}','{{ course.offer_fee }}','{{ course.duration|escapejs }}')">
+                        View Course <span>→</span>
+                    </button>
+                </div>
+            </article>
+            {% endfor %}
+
+        </div>
+
+        <div class="course-empty" id="courseEmpty">
+            No courses match your search or filters.
+        </div>
+
+        {% else %}
+        <div class="course-empty show">No courses available right now.</div>
+        {% endif %}
+
+    </div>
+</section>
+
+<!-- ===================== FEATURED ===================== -->
+{% if courses %}
+<section class="featured-course">
+    <div class="featured-inner">
+
+        <div class="featured-content">
+            <span class="featured-label">FEATURED</span>
+
+            <h2>{{ courses.0.name }}</h2>
+
+            <p>
+                Build your future with practical technology training,
+                real projects and career-focused learning.
+            </p>
+
+            <button type="button"
+                    class="featured-link"
+                    onclick="openBooking('{{ courses.0.id }}','{{ courses.0.name|escapejs }}','{{ courses.0.offer_fee }}','{{ courses.0.duration|escapejs }}')">
+                View Course <span>›</span>
+            </button>
+        </div>
+
+        <div class="featured-image">
+            {% if courses.0.image %}
+                <img src="{{ courses.0.image.url }}" alt="{{ courses.0.name }}">
+            {% else %}
+                <img src="{% static 'main/images/sample.webp' %}" alt="{{ courses.0.name }}">
+            {% endif %}
+        </div>
+
+    </div>
+</section>
+{% endif %}
+
+<!-- ===================== EXPECT ===================== -->
+<section class="expect-section">
+    <h2>What You Can Expect</h2>
+
+    <div class="expect-grid">
+        <div class="expect-card">
+            <div class="expect-icon">🎓</div>
+            <div>Practical<br>Learning</div>
+        </div>
+
+        <div class="expect-card">
+            <div class="expect-icon">📝</div>
+            <div>Project-Based<br>Practice</div>
+        </div>
+
+        <div class="expect-card">
+            <div class="expect-icon">💬</div>
+            <div>Technical<br>Guidance</div>
+        </div>
+
+        <div class="expect-card">
+            <div class="expect-icon">💼</div>
+            <div>Career<br>Preparation</div>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="course-cta">
+    <h2>Not Sure Which Course to Choose?</h2>
+    <p>Explore your requirements with us and get advice on your technology.</p>
+    <a href="{% url 'contact' %}" class="talk-button">Talk to Us <span>→</span></a>
+</section>
+
+
+<!-- ===================== BOOKING MODAL ===================== -->
+<div class="booking-overlay" id="bookingOverlay">
+    <div class="booking-box">
+
+        <div class="bb-header">
+            <div>
+                <p class="bb-label">Booking for</p>
+                <h2 id="bbCourseName">Course Name</h2>
+
+                <div class="bb-meta-row">
+                    <span class="bb-pill">⏱ <span id="bbDuration">—</span></span>
+                    <span class="bb-pill gold">₹<span id="bbFee">—</span></span>
+                </div>
+            </div>
+
+            <button class="bb-close" type="button" onclick="closeBooking()">✕</button>
+        </div>
+
+        <div class="bb-body">
+            <form method="POST" action="" id="bookingForm">
+                {% csrf_token %}
+
+                <div class="bb-field">
+                    <label>Full Name <span>*</span></label>
+                    <input type="text" name="student_name" class="b-input"
+                           placeholder="Your Full Name" required>
+                </div>
+
+                <div class="bb-row">
+                    <div class="bb-field">
+                        <label>Email <span>*</span></label>
+                        <input type="email" name="email" class="b-input"
+                               placeholder="your@email.com" required>
+                    </div>
+
+                    <div class="bb-field">
+                        <label>Mobile <span>*</span></label>
+                        <input type="tel" name="mobile" class="b-input"
+                               placeholder="+91 XXXXX XXXXX" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="bb-submit" id="bbSubmitBtn">
+                    Confirm Booking 🚀
+                </button>
+
+                <p class="bb-note">📧 A confirmation email will be sent to you after booking.</p>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+(function () {
+    const state = {
+        category: "all",
+        mode: "online",
+        level: "beginner"
+    };
+
+    const search = document.getElementById("courseSearch");
+    const cards = Array.from(document.querySelectorAll(".course-card"));
+    const empty = document.getElementById("courseEmpty");
+
+    function getCategory(text) {
+        if (/full stack|python|software development/.test(text)) return "software";
+        if (/web development|html|css|javascript|react|frontend|backend/.test(text)) return "web";
+        if (/java|programming|c\+\+|\.net/.test(text)) return "programming";
+        if (/ui|ux|figma|design/.test(text)) return "uiux";
+        if (/digital|marketing|seo/.test(text)) return "digital";
+        if (/cloud|aws|azure|devops/.test(text)) return "cloud";
+        return "other";
+    }
+
+    function applyFilters() {
+        const query = (search.value || "").trim().toLowerCase();
+        let count = 0;
+
+        cards.forEach(card => {
+            const text = (card.dataset.name + " " + card.dataset.description).toLowerCase();
+
+            const categoryMatch =
+                state.category === "all" ||
+                getCategory(text) === state.category;
+
+            const modeMatch = state.mode === card.dataset.mode;
+            const levelMatch = state.level === card.dataset.level;
+            const searchMatch = !query || text.includes(query);
+
+            const show = categoryMatch && modeMatch && levelMatch && searchMatch;
+
+            card.style.display = show ? "" : "none";
+            if (show) count++;
+        });
+
+        if (empty) {
+            empty.classList.toggle("show", count === 0);
+        }
+    }
+
+    document.querySelectorAll(".filter-btn").forEach(button => {
+        button.addEventListener("click", function () {
+            const group = this.dataset.filterGroup;
+
+            document.querySelectorAll(
+                '.filter-btn[data-filter-group="' + group + '"]'
+            ).forEach(btn => btn.classList.remove("active"));
+
+            this.classList.add("active");
+            state[group] = this.dataset.value;
+
+            applyFilters();
+        });
+    });
+
+    search.addEventListener("input", applyFilters);
+
+    window.openBooking = function (courseId, courseName, fee, duration) {
+        document.getElementById("bookingForm").action =
+            "/courses/book/" + courseId + "/";
+
+        document.getElementById("bbCourseName").textContent = courseName;
+        document.getElementById("bbFee").textContent = fee;
+        document.getElementById("bbDuration").textContent = duration;
+
+        document.getElementById("bookingOverlay").classList.add("open");
+        document.body.style.overflow = "hidden";
+    };
+
+    window.closeBooking = function () {
+        document.getElementById("bookingOverlay").classList.remove("open");
+        document.body.style.overflow = "";
+    };
+
+    document.getElementById("bookingOverlay").addEventListener("click", function (e) {
+        if (e.target === this) closeBooking();
+    });
+
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape") closeBooking();
+    });
+
+    document.getElementById("bookingForm").addEventListener("submit", function () {
+        const button = document.getElementById("bbSubmitBtn");
+        button.textContent = "Processing...";
+        button.disabled = true;
+    });
+
+    applyFilters();
+})();
+</script>
+
+{% endblock %}

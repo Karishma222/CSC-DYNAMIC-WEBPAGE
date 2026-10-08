@@ -1,0 +1,785 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="contact.css">
+<style>
+
+/* ================================================================
+   CSC ANNA NAGAR — Contact Page
+   Navy #1e2a78 | Gold #ffca2c
+   ================================================================ */
+
+:root {
+  --navy:    #1e2a78;
+  --navy-dk: #0d1545;
+  --gold:    #ffca2c;
+  --gold-dk: #e6b400;
+  --white:   #ffffff;
+  --bg:      #f8f9ff;
+  --light:   #eef2ff;
+  --muted:   #6b7280;
+  --border:  #e2e8f8;
+  --ease:    cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Hero Section ──────────────────────────────────────────── */
+.contact-hero {
+  position: relative;
+  background: linear-gradient(135deg, #0a0f3d 0%, #1e2a78 55%, #0d1545 100%);
+  padding: 90px 2rem 80px;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Grid overlay */
+.contact-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 52px 52px;
+  pointer-events: none;
+}
+
+/* Glow orbs */
+.contact-hero::after {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,202,44,0.09) 0%, transparent 65%);
+  animation: pulse-orb 9s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+.orb-left {
+  position: absolute;
+  bottom: -80px; left: -80px;
+  width: 320px; height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.04) 0%, transparent 65%);
+  animation: pulse-orb 11s ease-in-out 2s infinite alternate;
+  pointer-events: none;
+}
+@keyframes pulse-orb {
+  from { transform: scale(1) translate(0, 0); }
+  to   { transform: scale(1.2) translate(18px, -18px); }
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255,202,44,0.12);
+  color: var(--gold);
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,202,44,0.3);
+  margin-bottom: 1.2rem;
+  animation: fadeUp 0.7s var(--ease) 0.1s both;
+}
+
+.contact-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  animation: fadeUp 0.7s var(--ease) 0.25s both;
+}
+.contact-hero h1 span { color: var(--gold); }
+
+.contact-hero p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.75;
+  animation: fadeUp 0.7s var(--ease) 0.4s both;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Scroll cue ──────────────────────────────────────────────── */
+.scroll-cue {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  animation: bounce 2s ease-in-out infinite;
+}
+.scroll-cue span {
+  display: block;
+  width: 24px; height: 24px;
+  border-right: 2px solid rgba(255,202,44,0.6);
+  border-bottom: 2px solid rgba(255,202,44,0.6);
+  transform: rotate(45deg);
+  margin: -8px auto 0;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ── Main Section ────────────────────────────────────────────── */
+.contact-section {
+  padding: 80px 2rem;
+  background: var(--bg);
+  min-height: 60vh;
+}
+
+.contact-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* ── Info Panel ──────────────────────────────────────────────── */
+.info-panel {
+  position: sticky;
+  top: 100px;
+}
+
+.info-panel h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+.gold-rule {
+  width: 52px; height: 4px;
+  background: var(--gold);
+  border-radius: 2px;
+  margin-bottom: 1.4rem;
+}
+.info-panel > p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.97rem;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 2rem;
+}
+
+/* Contact cards */
+.contact-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 2rem;
+}
+
+.c-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--white);
+  border-radius: 14px;
+  border: 1.5px solid var(--border);
+  box-shadow: 0 2px 12px rgba(30,42,120,0.06);
+  transition: all 0.3s var(--ease);
+  text-decoration: none;
+  /* reveal */
+  opacity: 0;
+  transform: translateX(-22px);
+}
+.c-card.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.c-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 8px 28px rgba(30,42,120,0.13);
+  transform: translateX(5px);
+}
+
+.c-icon {
+  width: 44px; height: 44px;
+  border-radius: 11px;
+  background: var(--light);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  transition: background 0.3s;
+}
+.c-card:hover .c-icon {
+  background: var(--navy);
+}
+
+.c-text strong {
+  display: block;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: 2px;
+}
+.c-text span {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.92rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* Social row */
+.social-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 0.5rem;
+}
+.soc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 18px;
+  border-radius: 10px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s var(--ease);
+}
+.soc-wa {
+  background: #25d366;
+  color: var(--white);
+  box-shadow: 0 4px 14px rgba(37,211,102,0.3);
+}
+.soc-wa:hover {
+  background: #1da851;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(37,211,102,0.45);
+}
+.soc-ig {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366);
+  color: var(--white);
+  box-shadow: 0 4px 14px rgba(220,39,67,0.3);
+}
+.soc-ig:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(220,39,67,0.4);
+  filter: brightness(1.08);
+}
+
+/* ── Form Card ───────────────────────────────────────────────── */
+.form-card {
+  background: var(--white);
+  border-radius: 22px;
+  padding: 2.6rem 2.4rem;
+  box-shadow: 0 16px 56px rgba(30,42,120,0.11);
+  border: 1.5px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  /* reveal */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+.form-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Top accent bar */
+.form-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--navy), var(--gold));
+  border-radius: 22px 22px 0 0;
+}
+
+.form-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.55rem;
+  color: var(--navy);
+  margin-bottom: 0.3rem;
+}
+.form-card > p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 1.8rem;
+}
+
+/* Form fields — override Django as_p */
+.contact-form p {
+  margin-bottom: 1.2rem;
+}
+.contact-form label {
+  display: block;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.83rem;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: 0.3px;
+  margin-bottom: 6px;
+}
+.contact-form label::after {
+  content: ' *';
+  color: #e53935;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form input[type="tel"],
+.contact-form input[type="number"],
+.contact-form select,
+.contact-form textarea {
+  width: 100%;
+  padding: 0.78rem 1rem;
+  border: 2px solid var(--border);
+  border-radius: 11px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  color: #1a1a2e;
+  background: var(--bg);
+  outline: none;
+  transition: all 0.3s var(--ease);
+  box-sizing: border-box;
+}
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  border-color: var(--navy);
+  background: var(--white);
+  box-shadow: 0 0 0 4px rgba(30,42,120,0.08);
+}
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+  color: #bbb;
+}
+.contact-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+.contact-form select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231e2a78' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 2.5rem;
+}
+
+/* Django form error messages */
+.contact-form ul.errorlist {
+  list-style: none;
+  margin: 4px 0 0;
+  padding: 0;
+}
+.contact-form ul.errorlist li {
+  font-size: 0.8rem;
+  color: #e53935;
+  font-weight: 600;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* Two column row */
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Submit button */
+.submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 100%;
+  padding: 0.95rem;
+  background: linear-gradient(135deg, var(--navy), #253394);
+  color: var(--white);
+  border: none;
+  border-radius: 12px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s var(--ease);
+}
+.submit-btn::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.14), transparent);
+  transition: left 0.55s ease;
+}
+.submit-btn:hover::before { left: 100%; }
+.submit-btn:hover {
+  background: linear-gradient(135deg, var(--gold), var(--gold-dk, #e6b400));
+  color: var(--navy);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px rgba(255,202,44,0.45);
+}
+.submit-btn:active {
+  transform: translateY(0);
+}
+.submit-btn svg {
+  transition: transform 0.3s var(--ease);
+}
+.submit-btn:hover svg {
+  transform: translateX(4px);
+}
+
+/* ── Map embed ───────────────────────────────────────────────── */
+.map-section {
+  padding: 0 2rem 80px;
+  background: var(--bg);
+}
+.map-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.map-wrapper h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  color: var(--navy);
+  margin-bottom: 0.4rem;
+}
+.map-wrapper p {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-bottom: 1.4rem;
+}
+.map-frame {
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(30,42,120,0.14);
+  border: 2px solid var(--border);
+  height: 340px;
+}
+.map-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* ── Success / Error messages ────────────────────────────────── */
+.flash-messages { padding: 1rem 2rem 0; max-width: 1100px; margin: 0 auto; }
+.flash-msg {
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 0.6rem;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex; align-items: center; gap: 8px;
+  animation: slideDown 0.4s ease;
+}
+.flash-msg.success { background: #e8f5e9; color: #2e7d32; border-left: 4px solid #4caf50; }
+.flash-msg.error   { background: #fce4ec; color: #c62828; border-left: 4px solid #e53935; }
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .contact-wrapper { grid-template-columns: 1fr; gap: 2.2rem; }
+  .info-panel { position: static; }
+  .form-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .contact-hero { padding: 70px 1.5rem 60px; }
+  .contact-section { padding: 50px 1.2rem; }
+  .form-card { padding: 2rem 1.5rem; }
+  .social-row { flex-wrap: wrap; }
+}
+
+</style>
+{% endblock %}
+
+
+{% block content %}
+
+<!-- ── HERO ──────────────────────────────────────────────────── -->
+<section class="contact-hero">
+    <div class="orb-left"></div>
+    <div class="hero-inner">
+        <div class="hero-badge">
+            <span>📬</span> Get In Touch
+        </div>
+        <h1>Contact <span>CSC Anna Nagar</span></h1>
+        <p>
+            Have a question about our courses? Want to book a free demo?<br>
+            We'd love to hear from you — reach out and we'll get back to you quickly.
+        </p>
+    </div>
+    <div class="scroll-cue"><span></span></div>
+</section>
+
+
+<!-- ── FLASH MESSAGES ─────────────────────────────────────────── -->
+{% if messages %}
+<div class="flash-messages">
+    {% for message in messages %}
+    <div class="flash-msg {{ message.tags }}">
+        {% if message.tags == 'success' %}✅{% else %}❌{% endif %}
+        {{ message }}
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+
+<!-- ── MAIN CONTACT SECTION ───────────────────────────────────── -->
+<section class="contact-section">
+    <div class="contact-wrapper">
+
+        <!-- ─── LEFT: Info Panel ─────────────────────────────── -->
+        <aside class="info-panel">
+            <h2>We're Here<br>to Help You</h2>
+            <div class="gold-rule"></div>
+            <p>
+                Visit us at our Anna Nagar campus, call us, or send a message using
+                the form. Our team responds within a few hours on working days.
+            </p>
+
+            <div class="contact-cards">
+
+                <!-- Address -->
+                <a href="https://maps.google.com/?q=Anna+Nagar+Tower+Chennai"
+                   target="_blank" rel="noopener" class="c-card" style="transition-delay:0.1s">
+                    <div class="c-icon">📍</div>
+                    <div class="c-text">
+                        <strong>Address</strong>
+                        <span>AP-814, "G" Block, 1st Street,<br>
+                              Near Anna Nagar Tower,<br>
+                              Anna Nagar, Chennai</span>
+                    </div>
+                </a>
+
+                <!-- Phone -->
+                <a href="tel:9940909056" class="c-card" style="transition-delay:0.2s">
+                    <div class="c-icon">📞</div>
+                    <div class="c-text">
+                        <strong>Phone</strong>
+                        <span>+91 9940909056</span>
+                    </div>
+                </a>
+
+                <!-- Email -->
+                <a href="mailto:annanagarcsc2024@gmail.com" class="c-card" style="transition-delay:0.3s">
+                    <div class="c-icon">✉️</div>
+                    <div class="c-text">
+                        <strong>Email</strong>
+                        <span>annanagarcsc2024@gmail.com</span>
+                    </div>
+                </a>
+
+                <!-- Hours -->
+                <div class="c-card" style="transition-delay:0.4s">
+                    <div class="c-icon">🕐</div>
+                    <div class="c-text">
+                        <strong>Working Hours</strong>
+                        <span>Mon – Sat: 9:00 AM – 7:00 PM<br>Sunday: Closed</span>
+                    </div>
+                </div>
+
+            </div><!-- /.contact-cards -->
+
+            <!-- Social Links -->
+            <div class="social-row">
+                <a href="https://wa.me/919940909056?text=Hi%20CSC%20Anna%20Nagar%2C%20I%20have%20an%20inquiry."
+                   target="_blank" rel="noopener" class="soc-btn soc-wa">
+                    💬 WhatsApp Us
+                </a>
+                <a href="https://www.instagram.com/csc_anna_nagar/"
+                   target="_blank" rel="noopener" class="soc-btn soc-ig">
+                    📸 Instagram
+                </a>
+            </div>
+        </aside>
+
+
+        <!-- ─── RIGHT: Contact Form ──────────────────────────── -->
+        <div class="form-card" id="contactForm">
+            <h3>Send Us a Message</h3>
+            <p>Fill in the details below and we'll contact you as soon as possible.</p>
+
+            <form method="post" class="contact-form" id="cscContactForm">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                <div class="flash-msg error">❌ {{ form.non_field_errors }}</div>
+                {% endif %}
+
+                <!-- Name + Phone in a row -->
+                <div class="form-row">
+                    <p>
+                        <label for="{{ form.name.id_for_label }}">Full Name</label>
+                        {{ form.name }}
+                        {{ form.name.errors }}
+                    </p>
+                    <p>
+                        <label for="{{ form.phone.id_for_label }}">Phone Number</label>
+                        {{ form.phone }}
+                        {{ form.phone.errors }}
+                    </p>
+                </div>
+
+                <!-- Email -->
+                <p>
+                    <label for="{{ form.email.id_for_label }}">Email Address</label>
+                    {{ form.email }}
+                    {{ form.email.errors }}
+                </p>
+
+                <!-- Course interest (if field exists, else skip) -->
+                {% if form.course %}
+                <p>
+                    <label for="{{ form.course.id_for_label }}">Course Interested In</label>
+                    {{ form.course }}
+                    {{ form.course.errors }}
+                </p>
+                {% endif %}
+
+                <!-- Subject (if field exists) -->
+                {% if form.subject %}
+                <p>
+                    <label for="{{ form.subject.id_for_label }}">Subject</label>
+                    {{ form.subject }}
+                    {{ form.subject.errors }}
+                </p>
+                {% endif %}
+
+                <!-- Message -->
+                <p>
+                    <label for="{{ form.message.id_for_label }}">Your Message</label>
+                    {{ form.message }}
+                    {{ form.message.errors }}
+                </p>
+
+                <!-- Submit -->
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    Send Message
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                         viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                         stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="22" y1="2" x2="11" y2="13"></line>
+                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                    </svg>
+                </button>
+
+            </form>
+        </div><!-- /.form-card -->
+
+    </div><!-- /.contact-wrapper -->
+</section>
+
+
+<!-- ── MAP SECTION ────────────────────────────────────────────── -->
+<section class="map-section">
+    <div class="map-wrapper">
+        <h3>📍 Find Us on the Map</h3>
+        <p>AP-814, "G" Block, 1st Street, Near Anna Nagar Tower, Anna Nagar, Chennai</p>
+        <div class="map-frame">
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3886.3895!2d80.2141!3d13.0849!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52640e5a2a5555%3A0x1234567890abcdef!2sAnna+Nagar+Tower!5e0!3m2!1sen!2sin!4v1680000000000!5m2!1sen!2sin"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                title="CSC Anna Nagar Location">
+            </iframe>
+        </div>
+    </div>
+</section>
+
+
+<!-- ── JavaScript ─────────────────────────────────────────────── -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+    // ── Scroll reveal for cards ─────────────────────────────
+    const obs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                obs.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.c-card, .form-card').forEach(function (el) {
+        obs.observe(el);
+    });
+
+    // ── Submit loading state ────────────────────────────────
+    var form = document.getElementById('cscContactForm');
+    var btn  = document.getElementById('submitBtn');
+    if (form && btn) {
+        form.addEventListener('submit', function () {
+            btn.innerHTML = 'Sending... <span style="display:inline-block;animation:spin 1s linear infinite">⟳</span>';
+            btn.disabled = true;
+            btn.style.opacity = '0.75';
+        });
+    }
+
+    // ── Auto-dismiss flash messages ─────────────────────────
+    document.querySelectorAll('.flash-msg').forEach(function (msg) {
+        setTimeout(function () {
+            msg.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            msg.style.opacity = '0';
+            msg.style.transform = 'translateY(-10px)';
+            setTimeout(function () { msg.remove(); }, 500);
+        }, 6000);
+    });
+
+    // ── Add placeholders to Django form inputs ──────────────
+    var placeholders = {
+        'id_name':    'e.g. Ravi Kumar',
+        'id_phone':   'e.g. +91 98765 43210',
+        'id_email':   'e.g. your@email.com',
+        'id_subject': 'e.g. Query about Python Full Stack',
+        'id_message': 'Write your message here...',
+        'id_course':  '',
+    };
+    Object.keys(placeholders).forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el && placeholders[id]) el.setAttribute('placeholder', placeholders[id]);
+    });
+});
+</script>
+
+<style>
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+</style>
+
+{% endblock %}

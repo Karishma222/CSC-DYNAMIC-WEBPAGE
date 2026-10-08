@@ -1,0 +1,103 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'main/css/achievements.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- ── Page Hero ──────────────────────────────────────────── -->
+<div class="achieve-hero">
+    <h1 class="page-title">Our Achievements</h1>
+    <div class="page-title-line"></div>
+    <p class="page-subtitle">Celebrating the milestones and success of our students &amp; institute</p>
+</div>
+
+<!-- ── Achievements List ──────────────────────────────────── -->
+<section class="achievements-page">
+    <div class="container">
+
+        {% if achievements %}
+        <div class="achievements-list">
+
+            {% for a in achievements %}
+            <div class="achievement-row {% if forloop.counter|divisibleby:2 %}reverse{% endif %}">
+
+                <!-- IMAGE -->
+                <div class="achievement-image">
+                    {% if a.image %}
+                        <img src="{{ a.image.url }}" alt="{{ a.title }}">
+                    {% else %}
+                        <img src="{% static 'main/images/no-image.png' %}" alt="No Image">
+                    {% endif %}
+                </div>
+
+                <!-- CONTENT -->
+                <div class="achievement-content">
+
+                    <!-- Number badge -->
+                    <div class="achievement-number">{{ forloop.counter }}</div>
+
+                    <!-- Trophy icon -->
+                    <span class="trophy-icon">🏆</span>
+
+                    <!-- Date if available -->
+                    {% if a.date %}
+                    <div class="achievement-date">
+                        📅 {{ a.date|date:"d M Y" }}
+                    </div>
+                    {% endif %}
+
+                    <h3>{{ a.title }}</h3>
+                    <p>{{ a.description }}</p>
+
+                </div>
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+        <div class="no-achievements">
+            <span class="empty-icon">🏆</span>
+            <h3>Achievements Coming Soon</h3>
+            <p>We are constantly growing — check back soon!</p>
+        </div>
+        {% endif %}
+
+        <!-- Back Button -->
+        <div class="back-btn-wrap">
+            <a href="{% url 'home' %}" class="back-btn">
+                ← Back to Home
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<!-- ── Scroll Reveal Script ───────────────────────────────── -->
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const rows = document.querySelectorAll('.achievement-row');
+
+    const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry, i) {
+            if (entry.isIntersecting) {
+                // stagger each row by 150ms
+                setTimeout(function () {
+                    entry.target.classList.add('visible');
+                }, i * 150);
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    rows.forEach(function (row) {
+        observer.observe(row);
+    });
+});
+</script>
+
+{% endblock %}
